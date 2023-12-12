@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="contenido">
+
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">Registro</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+
+        <h1>Registro - Estudiante</h1>
+        <div class="contenedorInputs">
+
+
+            <input id="nombre" type="text" placeholder="Ingrese nombre del estudiante">
+            <input id="edad" type="text" placeholder="Ingrese edad del estudiante">
+            <input id="madre" type="text" placeholder="Ingrese nombre de madre">
+            <input id="padre" type="text" placeholder="Ingrese nombre de padre">
+
+            <select id="cualidades" name="cualidades">
+                <option value="" disabled selected>Selecciona la cualidad</option>
+                <option value="valor_fuerza_audacia">Valor, fuerza, audacia</option>
+                <option value="justicia_lealtad_paciencia">Justicia, Lealtad, Paciencia</option>
+                <option value="creatividad_erudicion_inteligencia">Creatividad, Erudición, Inteligencia</option>
+                <option value="ambicion_determinacion_astucia">Ambición, Determinación, Astucia</option>
+            </select>
+            
+            <select id="linaje" name="linaje">
+                <option value="" disabled selected>Selecciona el linaje</option>
+                <option value="mestizo">Mestizo</option>
+                <option value="muggle">Muggle</option>
+                <option value="sangre_pura">Sangre pura</option>
+            </select>
+
+
+            <button class="btnGenerar">Generar avatar</button>
+        </div>
+
+
+
+    </main>
+    <script src="hogwarts.js"></script>
+</body>
+</html>
