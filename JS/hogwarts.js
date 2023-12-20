@@ -1,12 +1,12 @@
-const nombre = document.getElementById("");
-const edad = document.getElementById("");
-// familia
-const padre = document.getElementById("");
-const madre = document.getElementById("");
-const linaje = document.getElementById("");
-const casa = document.getElementById("");
-const animalPatronus = document.getElementById("");
-const cualidades = document.getElementById("");
+// const nombre = document.getElementById("");
+// const edad = document.getElementById("");
+// // familia
+// const padre = document.getElementById("");
+// const madre = document.getElementById("");
+// const linaje = document.getElementById("");
+// const casa = document.getElementById("");
+// const animalPatronus = document.getElementById("");
+// const cualidades = document.getElementById("");
 
 
 
@@ -74,6 +74,7 @@ let sombreroSeleccionador = {
 // Paso 4
 let claseTransformaciones = {
     nombreProfesor: clases.transformaciones,
+    hora: "9 AM",
     realizarTransformacionRiddikulus: function (boggart) {
         let mensaje = "";
         if (boggart) {
@@ -86,7 +87,7 @@ let claseTransformaciones = {
     enfrentarBoggart: function (boggart) {
         let mensaje = "";
         if (boggart) {
-            mensaje = "Aparece un boggart con la forma original: " + boggart;
+            mensaje = "Aparece un boggart en la clase de transformaciones: " + boggart;
             claseTransformaciones.realizarTransformacionRiddikulus(boggart);
         } else {
             mensaje = "No hay boggart presente.";
@@ -132,9 +133,51 @@ function mostrarInformacion(estudiante) {
     console.log("Cualidades: " + estudiante.cualidades.join(", "));
 }
 
+
+// Paso 7
+let clasePociones = {
+    profesor: clases.pociones,
+    horario: "10 AM",
+    ingredientes: {
+        crisopos: 2, 
+        talloDescurainiaSophia: 1
+    },
+    tiempoPreparacion: 5,
+    pocionPreparada: false,
+    prepararPocion: function (){
+        if(clasePociones.ingredientes.crisopos === 2 && clasePociones.ingredientes.talloDescurainiaSophia === 1 && clasePociones.tiempoPreparacion === 5){
+            console.log("!Pocion Felix Felicis Preparada con exito¡");  
+            clasePociones.pocionPreparada = true;          
+        }else{
+            console.log("No se pudo preparar la Pocion Felix Felicis");
+            clasePociones.pocionPreparada = false;
+        }
+    },
+
+    aplicarConsecuencias: function(){
+        if(clasePociones.pocionPreparada){
+            console.log("La pocion ha tenido efecto");
+            console.log("cambia al profesor de pociones por el de animales magicos. ");
+            clasePociones.profesor = clases.animalesMagicos;
+            clases.pociones = clasePociones.profesor;
+            console.log(`profesor: ${clasePociones.profesor}`)
+        }else{
+            console.log("No se pueden aplicar consecuencias. ")
+        }
+    },
+
+}
+
+
+
 // Llamadas a las funciones
 sombreroSeleccionador.asignarCasa()
 defensaContraLasArtesOscuras.generarAnimalPatronus();
 mostrarInformacion(estudianteHogwarts);
 enfrentarBoggart();
 defensaContraLasArtesOscuras.enfrentarDementor();
+
+console.log("\n");
+
+clasePociones.prepararPocion();
+clasePociones.aplicarConsecuencias();
