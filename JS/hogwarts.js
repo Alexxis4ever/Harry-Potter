@@ -1,27 +1,28 @@
-// const nombre = document.getElementById("");
-// const edad = document.getElementById("");
-// // familia
-// const padre = document.getElementById("");
-// const madre = document.getElementById("");
-// const linaje = document.getElementById("");
-// const casa = document.getElementById("");
-// const animalPatronus = document.getElementById("");
-// const cualidades = document.getElementById("");
+const nombre = document.getElementById("nombre");
+const edad = document.getElementById("edad");
+// familia
+const padre = document.getElementById("padre");
+const madre = document.getElementById("madre");
+const linaje = document.getElementById("linaje");
+const cualidades = document.getElementById("cualidades");
 
+
+const btnEnvio = document.getElementById("btnSend");
+btnEnvio.addEventListener('click', registroEstudiante);
 
 
 // Paso 1: Crear objeto estudianteHogwarts
 let estudianteHogwarts = {
-    nombre: "Jackson Ravenshadow Alderwing",
-    edad: 11,
+    nombre: "",
+    edad: 0,
     familia: {
-        padre: "Alderus Alderwing",
-        madre: "Aiza Ravenshadow",
+        padre: "",
+        madre: "",
     },
-    linaje: "Sangre pura",
+    linaje: "",
     casa: "",
     animalPatronus: "",
-    cualidades: ["Ambición", "Determinación", "Astucia"],
+    cualidades: "",
 
     enfrentarDementor: function () {
         let mensaje = "";
@@ -33,6 +34,60 @@ let estudianteHogwarts = {
         console.log(mensaje);
     },
 };
+
+// sombreroSeleccionador.asignarCasa()
+
+
+function registroEstudiante() {
+
+    // Obtener los valores de los campos de entrada
+    let nombreEstudiante = nombre.value;
+    let edadEstudiante = edad.value;
+    let nombrePadre = padre.value;
+    let nombreMadre = madre.value;
+    let linajeEsudiante = linaje.value;
+    let cualidadesEstudiante = cualidades.value;
+
+    // Validar que no existan campos vacios
+    if (
+        nombreEstudiante === "" ||
+        edadEstudiante === "" ||
+        nombrePadre === "" ||
+        nombreMadre === "" ||
+        linajeEsudiante === "" ||
+        cualidadesEstudiante === ""
+    ) {
+        alert("Por favor, completa todos los campos.")
+        return; // Se detiene el proceso si hay campos nulos
+    }
+
+      // Actualizar las propiedades del objeto estudianteHogwarts
+      estudianteHogwarts.nombre = nombreEstudiante;
+      estudianteHogwarts.edad = edadEstudiante;
+      estudianteHogwarts.familia.padre = nombrePadre;
+      estudianteHogwarts.familia.madre = nombreMadre;
+      estudianteHogwarts.linaje = linajeEsudiante;
+      estudianteHogwarts.cualidades = cualidadesEstudiante;  
+
+      localStorage.setItem('estudianteHogwarts', JSON.stringify(estudianteHogwarts));
+      
+      sombreroSeleccionador.asignarCasa();
+
+      nombre.value = ""
+      edad.value = ""
+      padre.value = ""
+      madre.value = ""
+      cualidades.value = ""
+      linaje.value = ""
+
+      console.log(estudianteHogwarts);
+    
+    window.location.href = "informacion.html"
+}
+
+// let estudiants = JSON.parse(localStorage.getItem('estudianteHogwarts'));
+// console.log(estudiants);
+
 
 // Paso 2
 let clases = {
@@ -48,27 +103,33 @@ let clases = {
 // Paso 3
 let sombreroSeleccionador = {
         asignarCasa: function () {
-        estudianteHogwarts.casa = "No asignada";
+        let datosLocalStorage = JSON.parse(localStorage.getItem('estudianteHogwarts'))
+        datosLocalStorage.casa = "No asignada";
 
-        if (estudianteHogwarts.cualidades.includes("Valor") || estudianteHogwarts.cualidades.includes("Fuerza") || estudianteHogwarts.cualidades.includes("Audacia")) {
-            if (estudianteHogwarts.linaje === "Mestizo" || estudianteHogwarts.linaje === "Muggle" || estudianteHogwarts.linaje === "Sangre pura") {
-                estudianteHogwarts.casa = "Gryffindor";
+        
+        if (datosLocalStorage.cualidades == "Valor, Fuerza, Audacia") {
+            if (datosLocalStorage.linaje === "Mestizo" || datosLocalStorage.linaje === "Muggle" || datosLocalStorage.linaje === "Sangre pura") {
+                datosLocalStorage.casa = "Gryffindor";
             }
-        } else if (estudianteHogwarts.cualidades.includes("Justicia") || estudianteHogwarts.cualidades.includes("Lealtad") || estudianteHogwarts.cualidades.includes("Paciencia")) {
-            if (estudianteHogwarts.linaje === "Mestizo" || estudianteHogwarts.linaje === "Muggle") {
-                estudianteHogwarts.casa = "Hufflepuff";
+        } else if (datosLocalStorage.cualidades == "Justicia, Lealtad, Paciencia") {
+            if (datosLocalStorage.linaje === "Mestizo" || datosLocalStorage.linaje === "Muggle") {
+                datosLocalStorage.casa = "Hufflepuff";
             }
-        } else if (estudianteHogwarts.cualidades.includes("Creatividad") || estudianteHogwarts.cualidades.includes("Erudición") || estudianteHogwarts.cualidades.includes("Inteligencia")) {
-            if (estudianteHogwarts.linaje === "Mestizo" || estudianteHogwarts.linaje === "Muggle" || estudianteHogwarts.linaje === "Sangre pura") {
-                estudianteHogwarts.casa = "Ravenclaw";
+        } else if (datosLocalStorage.cualidades === "Creatividad, Erudicion, Inteligencia") {
+            if (datosLocalStorage.linaje === "Mestizo" || datosLocalStorage.linaje === "Muggle" || datosLocalStorage.linaje === "Sangre pura") {
+                datosLocalStorage.casa = "Ravenclaw";
             }
-        } else if (estudianteHogwarts.cualidades.includes("Ambición") || estudianteHogwarts.cualidades.includes("Determinación") || estudianteHogwarts.cualidades.includes("Astucia")) {
-            if (estudianteHogwarts.linaje === "Sangre pura") {
-                estudianteHogwarts.casa = "Slytherin";
+        } else if (datosLocalStorage.cualidades === "Ambicion, Determinacion, Astucia") {
+            if (datosLocalStorage.linaje === "Sangre pura") {
+                datosLocalStorage.casa = "Slytherin";
             }
         }
-        return estudianteHogwarts.casa;
+
+        localStorage.setItem('estudianteHogwarts', JSON.stringify(datosLocalStorage));     
+
+        // return estudianteHogwarts.casa;
     }
+    // Guardar los cambios de vuelta en localStorage
 };
 
 // Paso 4
@@ -130,7 +191,7 @@ function mostrarInformacion(estudiante) {
     console.log("Linaje: " + estudiante.linaje);
     console.log("Casa: " + estudiante.casa);
     console.log("Animal Patronus: " + estudiante.animalPatronus);
-    console.log("Cualidades: " + estudiante.cualidades.join(", "));
+    console.log("Cualidades: " + estudiante.cualidades);
 }
 
 
@@ -169,15 +230,13 @@ let clasePociones = {
 }
 
 
-
 // Llamadas a las funciones
-sombreroSeleccionador.asignarCasa()
-defensaContraLasArtesOscuras.generarAnimalPatronus();
-mostrarInformacion(estudianteHogwarts);
-enfrentarBoggart();
-defensaContraLasArtesOscuras.enfrentarDementor();
+// defensaContraLasArtesOscuras.generarAnimalPatronus();
+// mostrarInformacion(estudianteHogwarts);
+// enfrentarBoggart();
+// defensaContraLasArtesOscuras.enfrentarDementor();
 
-console.log("\n");
+// console.log("\n");
 
-clasePociones.prepararPocion();
-clasePociones.aplicarConsecuencias();
+// clasePociones.prepararPocion();
+// clasePociones.aplicarConsecuencias();
