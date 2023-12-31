@@ -22,15 +22,18 @@
         <h1>Registro - Estudiante</h1>
         <div class="contenedorInputs">
 
+            <div class="contenedorAvatar">
+                <img src="../img/harryPotter_01.png" alt="">
+            </div>
+
 
             <input id="nombre" type="text" placeholder="Ingrese nombre del estudiante">
-            <input id="edad" type="number" placeholder="Ingrese edad del estudiante">
-            <input id="madre" type="text" placeholder="Ingrese nombre de madre">
-            <input id="padre" type="text" placeholder="Ingrese nombre de padre">
+            <input id="edad" type="number" class="inputEdad" placeholder="Ingrese edad del estudiante">
+
 
 
             <select id="cualidades" name="cualidades">
-                <option value="" disabled selected>Selecciona la cualidad</option>
+                <option value="" disabled selected>Selecciona las cualidades</option>
                 <option value="Valor, Fuerza, Audacia">Valor, fuerza, audacia</option>
                 <option value="Justicia, Lealtad, Paciencia">Justicia, Lealtad, Paciencia</option>
                 <option value="Creatividad, Erudicion, Inteligencia">Creatividad, Erudición, Inteligencia</option>
@@ -51,6 +54,9 @@
 
 
     </main>
+    
+    <!-- usamos este script para cargar y utilizar la biblioteca -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../JS/hogwarts.js"></script>
 </body>
 </html>
